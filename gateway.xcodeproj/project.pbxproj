@@ -17,6 +17,12 @@
 		3A3EE2561D8F9D46005A745D /* gatewayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE2551D8F9D46005A745D /* gatewayUITests.swift */; };
 		3A3EE2681D8FA811005A745D /* HomeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE2671D8FA811005A745D /* HomeCategory.swift */; };
 		3A3EE26A1D8FACFB005A745D /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE2691D8FACFB005A745D /* Init.swift */; };
+		3A3EE26D1D8FD74C005A745D /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE26C1D8FD74C005A745D /* MovieVO.swift */; };
+		3A3EE26F1D8FD77E005A745D /* Databox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE26E1D8FD77E005A745D /* Databox.swift */; };
+		3A3EE2711D90C0EA005A745D /* QuesionVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE2701D90C0EA005A745D /* QuesionVO.swift */; };
+		3A3EE2741D90CD67005A745D /* MovieDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3EE2731D90CD67005A745D /* MovieDAO.swift */; };
+		3AB82D191D90FA1500EA3BC5 /* MovieChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */; };
+		3AFC24741D90D3360082F476 /* QuestionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC24731D90D3360082F476 /* QuestionDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,12 @@
 		3A3EE2571D8F9D46005A745D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A3EE2671D8FA811005A745D /* HomeCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCategory.swift; path = ../HomeCategory.swift; sourceTree = "<group>"; };
 		3A3EE2691D8FACFB005A745D /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
+		3A3EE26C1D8FD74C005A745D /* MovieVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
+		3A3EE26E1D8FD77E005A745D /* Databox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Databox.swift; sourceTree = "<group>"; };
+		3A3EE2701D90C0EA005A745D /* QuesionVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuesionVO.swift; sourceTree = "<group>"; };
+		3A3EE2731D90CD67005A745D /* MovieDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDAO.swift; sourceTree = "<group>"; };
+		3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieChoice.swift; sourceTree = "<group>"; };
+		3AFC24731D90D3360082F476 /* QuestionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +115,15 @@
 		3A3EE2311D8F9D46005A745D /* gateway */ = {
 			isa = PBXGroup;
 			children = (
+				3A3EE26B1D8FD73F005A745D /* VO */,
+				3A3EE2721D90CD5B005A745D /* DAO */,
+				3A3EE26E1D8FD77E005A745D /* Databox.swift */,
+				3A3EE2691D8FACFB005A745D /* Init.swift */,
 				3A3EE2671D8FA811005A745D /* HomeCategory.swift */,
 				3A3EE2321D8F9D46005A745D /* AppDelegate.swift */,
 				3A3EE2341D8F9D46005A745D /* ViewController.swift */,
 				3A3EE2361D8F9D46005A745D /* Main.storyboard */,
-				3A3EE2691D8FACFB005A745D /* Init.swift */,
+				3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */,
 				3A3EE23C1D8F9D46005A745D /* Assets.xcassets */,
 				3A3EE23E1D8F9D46005A745D /* LaunchScreen.storyboard */,
 				3A3EE2411D8F9D46005A745D /* Info.plist */,
@@ -132,6 +148,24 @@
 				3A3EE2571D8F9D46005A745D /* Info.plist */,
 			);
 			path = gatewayUITests;
+			sourceTree = "<group>";
+		};
+		3A3EE26B1D8FD73F005A745D /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				3A3EE26C1D8FD74C005A745D /* MovieVO.swift */,
+				3A3EE2701D90C0EA005A745D /* QuesionVO.swift */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
+		3A3EE2721D90CD5B005A745D /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				3A3EE2731D90CD67005A745D /* MovieDAO.swift */,
+				3AFC24731D90D3360082F476 /* QuestionDAO.swift */,
+			);
+			name = DAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,9 +302,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A3EE26F1D8FD77E005A745D /* Databox.swift in Sources */,
 				3A3EE2681D8FA811005A745D /* HomeCategory.swift in Sources */,
 				3A3EE23B1D8F9D46005A745D /* gateway.xcdatamodeld in Sources */,
 				3A3EE2351D8F9D46005A745D /* ViewController.swift in Sources */,
+				3A3EE26D1D8FD74C005A745D /* MovieVO.swift in Sources */,
+				3A3EE2741D90CD67005A745D /* MovieDAO.swift in Sources */,
+				3AFC24741D90D3360082F476 /* QuestionDAO.swift in Sources */,
+				3AB82D191D90FA1500EA3BC5 /* MovieChoice.swift in Sources */,
+				3A3EE2711D90C0EA005A745D /* QuesionVO.swift in Sources */,
 				3A3EE26A1D8FACFB005A745D /* Init.swift in Sources */,
 				3A3EE2331D8F9D46005A745D /* AppDelegate.swift in Sources */,
 			);
@@ -499,6 +539,7 @@
 				3A3EE25C1D8F9D46005A745D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A3EE25D1D8F9D46005A745D /* Build configuration list for PBXNativeTarget "gatewayTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +548,7 @@
 				3A3EE25F1D8F9D46005A745D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A3EE2601D8F9D46005A745D /* Build configuration list for PBXNativeTarget "gatewayUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +557,7 @@
 				3A3EE2621D8F9D46005A745D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
