@@ -5,7 +5,7 @@
 //  Created by ming on 2016. 9. 19..
 //  Copyright © 2016년 cccvlm. All rights reserved.
 //
-import UIKit
+import Foundation
 
 class MovieVO{
     var category:Int?

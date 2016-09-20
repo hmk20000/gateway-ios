@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LinkVO.swift
 //  gateway
 //
 //  Created by ming on 2016. 9. 20..
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuestionVO{
+class LinkVO{
     var category:Int?
     var index_key:Int?
     var question_key:Int?

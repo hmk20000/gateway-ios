@@ -14,40 +14,27 @@ class HomeCategory: UITableViewController {
     var list = Array<String>()
     override func viewDidLoad() {
         list.append("SHORT FILMS")
-        list.append("JESUS")
+        list.append("JESUS FILMS")
         list.append("MAGDALENA")
         list.append("GOSPEL")
         list.append("HOW TO USE")
         
-        /*let tmp = MovieDAO(Entity: "Movie")
-        list = tmp.getAll(category: 0)
-        for i in list{
-            print(i.category)
+        self.tableView.rowHeight = 175;
+    }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden =  false
+        
+        //Status bar style and visibility
+        UIApplication.sharedApplication().statusBarHidden = false
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        //Change status bar color
+        let statusBar: UIView = UIApplication.sharedApplication().valueForKey("statusBar") as! UIView
+        if statusBar.respondsToSelector("setBackgroundColor:") {
+            statusBar.backgroundColor = UIColor.darkGrayColor()
         }
         
-        self.title = "title"*/
-        //NSLog("test")
-        /*self.tableView.rowHeight = 80;
-        let apiURI = NSURL(string: "http://cccvlm.com/API/MissionHub/testList.php")
-        
-        let apidata : NSData? = NSData(contentsOfURL: apiURI!)
-        
-        do{
-            let apiDictionary = try NSJSONSerialization.JSONObjectWithData(apidata!, options: []) as! NSDictionary
-            var fvo:FreshmanVO
-            for (k,tmp) in apiDictionary{
-                fvo = FreshmanVO()
-                fvo.key = Int(k as! String)
-                fvo.name = tmp["name"] as? String
-                fvo.phone = tmp["phonenumber"] as? String
-                people.append(fvo)
-            }
-            self.tableView.reloadData()
-        }catch{
-            
-        }*/
     }
-    
     override func tableView(tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return self.list.count
@@ -59,30 +46,28 @@ class HomeCategory: UITableViewController {
         
         let row = self.list[indexPath.row]
         
-        /*let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")!
-        let name = cell.viewWithTag(101) as? UILabel
-        let phone = cell.viewWithTag(102) as? UILabel
-        name?.text = row.name
-        phone?.text = row.phone*/
-        //cell.textLabel?.text = person.name
-        //person.valueForKey("name") as? String
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")!
-        cell.textLabel?.text = row
+        let bgimage = cell.viewWithTag(101) as? UIImageView
+        let label = cell.viewWithTag(102) as? UILabel
+        
+        bgimage!.image = UIImage(named: "home\(indexPath.row+1)btn.png")
+        label?.text = row
+        
         
         return cell
     }
     var paramKey = 0
+    var paramtitle = ""
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let nvc = segue.destinationViewController as? MovieChoice{
             nvc.paramKey = paramKey
-            /*nvc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-             self.presentViewController(nvc, animated: true, completion: nil)*/
+            nvc.paramTitle = paramtitle
         }
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         paramKey = indexPath.row
+        paramtitle = self.list[indexPath.row]
         self.performSegueWithIdentifier("segueNext", sender: self)
     }
     /*if let nvc = self.storyboard?.instantiateViewControllerWithIdentifier("tabVC"){
