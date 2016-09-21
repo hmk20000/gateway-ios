@@ -19,7 +19,8 @@ class HomeCategory: UITableViewController {
         list.append("GOSPEL")
         list.append("HOW TO USE")
         
-        self.tableView.rowHeight = 175;
+        self.tableView.rowHeight = 160;
+        tableView.separatorStyle = .None
     }
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden =  false

@@ -31,7 +31,7 @@ class Init{
                 if let t = movie["question1"] as? NSDictionary{
                     //sort 필요
                     for (k,v) in t{
-                        tmp += "\(k). \(v)"
+                        tmp += "\(k). \(v)\n\n"
                             //print("\(mvo.category)://\(mvo.index_key):\(k)+\(v)")
                     }
                 }
@@ -41,7 +41,7 @@ class Init{
                 if let t = movie["question2"] as? NSDictionary{
                     //sort 필요
                     for (k,v) in t{
-                        tmp += "\(k). \(v)\n"
+                        tmp += "\(k). \(v)\n\n"
                         //print("\(mvo.category)://\(mvo.index_key):\(k)+\(v)")
                     }
                 }
@@ -70,7 +70,7 @@ class Init{
         }catch{
             
         }
-        //mdao.viewAll(key: "title")
+        //mdao.viewAll(key: "descriptions")
 
     }
 }

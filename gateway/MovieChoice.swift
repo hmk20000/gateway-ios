@@ -19,7 +19,8 @@ class MovieChoice: UITableViewController {
          
         self.title = paramTitle
         
-        self.tableView.rowHeight = 180;
+        self.tableView.rowHeight = 160;
+        tableView.separatorStyle = .None
     }
     
     override func tableView(tableView: UITableView,
@@ -35,18 +36,26 @@ class MovieChoice: UITableViewController {
     
         let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")!
         let bgimage = cell.viewWithTag(101) as? UIImageView
-        let label = cell.viewWithTag(102) as? UILabel
+        let title = cell.viewWithTag(102) as? UILabel
+        let subtitle = cell.viewWithTag(103) as? UILabel
         
         var imageName:String?
         switch paramKey {
         case 0:
             imageName = "SF\(indexPath.row+1)btn.png"
+        case 1:
+            imageName = "JF\(indexPath.row+1)btn.png"
+        case 2:
+            imageName = "MD\(indexPath.row+1)btn.png"
+        case 3:
+            imageName = "GS\(indexPath.row+1)btn.png"
         default:
-            imageName = "SF\(indexPath.row+1)btn.png"
+            imageName = ""
         }
         
         bgimage!.image = UIImage(named: imageName!)
-        label?.text = row.title
+        title?.text = row.title
+        subtitle?.text = row.subtitle
         
         return cell
     }

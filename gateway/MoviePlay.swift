@@ -14,11 +14,22 @@ class MoviePlay: UITableViewController {
     var paramVO:MovieVO = MovieVO()
     var category:Int = 0
     var index_key:Int = 0
+    var screenHeight:Int = 0
+    
+    
+    
     override func viewDidLoad() {
         self.title = paramVO.title
         self.index_key = paramVO.index_key!
         self.category = paramVO.category!
         
+        var bounds = UIScreen.mainScreen().bounds
+        var width = bounds.size.width
+        var height = bounds.size.height
+        
+        screenHeight = Int(height)-240-160
+        
+        //print(paramVO.description)
         tableView.separatorStyle = .None
     }
     
@@ -47,6 +58,7 @@ class MoviePlay: UITableViewController {
         print("share")
     }
     
+    
     override func tableView(tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         //return self.list.count
@@ -69,10 +81,16 @@ class MoviePlay: UITableViewController {
             var imageName:String?
 
             switch category {
+            case 0:
+                imageName = "SF\(self.index_key)btn.png"
             case 1:
-                imageName = "SF\(self.index_key)btn.png"
+                imageName = "JF\(self.index_key)btn.png"
+            case 2:
+                imageName = "MD\(self.index_key)btn.png"
+            case 3:
+                imageName = "GS\(self.index_key)btn.png"
             default:
-                imageName = "SF\(self.index_key)btn.png"
+                imageName = ""
             }
             
             bgimage!.image = UIImage(named: imageName!)
@@ -80,39 +98,27 @@ class MoviePlay: UITableViewController {
             cell = tableView.dequeueReusableCellWithIdentifier("MoreCell")!
             
             self.tableView.rowHeight = 40;
-            /*let title = cell.viewWithTag(101) as? UILabel
-            let keyword = cell.viewWithTag(102) as? UILabel
-            let description = cell.viewWithTag(103) as? UILabel
-            
-            title?.text = "1"
-            keyword?.text = "3333"
-            description?.text = "asdfasdf"*/
         case 2:
             cell = tableView.dequeueReusableCellWithIdentifier("InfoCell")!
             
-            self.tableView.rowHeight = 180;
+            self.tableView.rowHeight = CGFloat(screenHeight);
             let title = cell.viewWithTag(101) as? UILabel
-            let keyword = cell.viewWithTag(102) as? UILabel
-            let description = cell.viewWithTag(103) as? UILabel
+            let subtitle = cell.viewWithTag(101) as? UILabel
+            let keyword = cell.viewWithTag(103) as? UILabel
+            let description = cell.viewWithTag(104) as? UITextView
             
             title?.text = paramVO.title
+            subtitle?.text = paramVO.subtitle
             keyword?.text = paramVO.keyword
             description?.text = paramVO.description
+            
+            title?.sizeToFit()
         case 3:
+            self.tableView.rowHeight = 60;
             cell = tableView.dequeueReusableCellWithIdentifier("LinkCell")!
-            
-            /*self.tableView.rowHeight = 180;
-            let title = cell.viewWithTag(101) as? UILabel
-            let keyword = cell.viewWithTag(102) as? UILabel
-            let description = cell.viewWithTag(103) as? UILabel
-            
-            title?.text = "1"
-            keyword?.text = "3333"
-            description?.text = "asdfasdf"*/
         default: break
 
         }
-        //let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell")!
         
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.blackColor()
@@ -120,15 +126,22 @@ class MoviePlay: UITableViewController {
         
         return cell
     }
-    /*var MovieKey=0
-    var paramVO = MovieVO()
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nvc = segue.destinationViewController as? ShortFilmPlay{
-            nvc.paramKey = MovieKey
-            nvc.paramVO = paramVO
-        }
+    @IBAction func question(sender: AnyObject) {
+        performSegueWithIdentifier("segueQuestion", sender: self)
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    @IBAction func next(sender: AnyObject) {
+        performSegueWithIdentifier("segueNext", sender: self)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let nvc = segue.destinationViewController as? MovieQuestion{
+            nvc.paramVO = self.paramVO
+        }
+        else if let nvc = segue.destinationViewController as? MovieNext{
+            nvc.paramVO = self.paramVO
+        }
+        
+    }
+    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         MovieKey = self.list[indexPath.row].index_key!
         paramVO = self.list[indexPath.row]
         self.performSegueWithIdentifier("seguePlay", sender: self)

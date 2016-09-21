@@ -12,5 +12,6 @@ class LinkVO{
     var category:Int?
     var index_key:Int?
     var question_key:Int?
-    var question:String?
+    var next_category:Int?
+    var next_index_key:Int?
 }

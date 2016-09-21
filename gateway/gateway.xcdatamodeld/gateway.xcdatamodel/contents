@@ -3,6 +3,13 @@
     <entity name="BasicInfo" syncable="YES">
         <attribute name="dataload" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
+    <entity name="Link" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="index_key" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="next_category" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="next_index_key" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="question_key" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Movie" syncable="YES">
         <attribute name="category" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="descriptions" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,5 +34,6 @@
         <element name="BasicInfo" positionX="-54" positionY="81" width="128" height="60"/>
         <element name="Movie" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="Question" positionX="-54" positionY="72" width="128" height="105"/>
+        <element name="Link" positionX="-54" positionY="72" width="128" height="120"/>
     </elements>
 </model>
