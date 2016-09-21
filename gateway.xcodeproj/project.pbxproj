@@ -69,6 +69,7 @@
 		3AB82D1B1D9100AB00EA3BC5 /* ShortFilmsPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB82D1A1D9100AB00EA3BC5 /* ShortFilmsPlay.swift */; };
 		3AB82D221D91226600EA3BC5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB82D211D91226600EA3BC5 /* LaunchScreen.png */; };
 		3AFC24741D90D3360082F476 /* QuestionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC24731D90D3360082F476 /* QuestionDAO.swift */; };
+		3AFE335F1D92A1B700483E3A /* MovieNext2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE335E1D92A1B700483E3A /* MovieNext2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		3AB82D1A1D9100AB00EA3BC5 /* ShortFilmsPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortFilmsPlay.swift; sourceTree = "<group>"; };
 		3AB82D211D91226600EA3BC5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		3AFC24731D90D3360082F476 /* QuestionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDAO.swift; sourceTree = "<group>"; };
+		3AFE335E1D92A1B700483E3A /* MovieNext2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieNext2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 				3AA9C3031D915AA00042D59D /* MoviePlay.swift */,
 				3A8F6E4A1D92629C00C8CC23 /* MovieQuestion.swift */,
 				3A8F6E4C1D92679B00C8CC23 /* MovieNext.swift */,
+				3AFE335E1D92A1B700483E3A /* MovieNext2.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				3AB82D191D90FA1500EA3BC5 /* MovieChoice.swift in Sources */,
 				3A3EE2711D90C0EA005A745D /* QuesionVO.swift in Sources */,
 				3A3EE26A1D8FACFB005A745D /* Init.swift in Sources */,
+				3AFE335F1D92A1B700483E3A /* MovieNext2.swift in Sources */,
 				3AA9C3041D915AA00042D59D /* MoviePlay.swift in Sources */,
 				3A3EE2331D8F9D46005A745D /* AppDelegate.swift in Sources */,
 				3A0B3DC51D91412200FF1E6C /* LinkVO.swift in Sources */,

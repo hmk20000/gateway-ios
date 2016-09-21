@@ -152,4 +152,42 @@ class MovieDAO{
         
         return list
     }
+    func getMovie(category c:Int,index_key i:Int)->MovieVO{
+        
+        var rtn = MovieVO()
+        
+        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            if results.count > 0{
+                for movie in results{
+                    var mvo = MovieVO()
+                    
+                    mvo.category = movie.valueForKey("category") as? Int
+                    if c == mvo.category {
+                        mvo.index_key = movie.valueForKey("index_key") as? Int
+                        if i == mvo.index_key {
+                            mvo.title = movie.valueForKey("title") as? String
+                            mvo.subtitle = movie.valueForKey("subtitle") as? String
+                            mvo.keyword = movie.valueForKey("keyword") as? String
+                            mvo.time = movie.valueForKey("time") as? String
+                            mvo.description = movie.valueForKey("descriptions") as? String
+                            mvo.question1 = movie.valueForKey("question1") as? String
+                            mvo.question2 = movie.valueForKey("question2") as? String
+                            mvo.url = movie.valueForKey("url") as? String
+                            mvo.lang = movie.valueForKey("lang") as? String
+                            
+                            rtn = mvo
+                        }
+                    }
+                }
+            }
+        }catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return rtn
+    }
 }

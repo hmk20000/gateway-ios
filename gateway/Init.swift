@@ -11,13 +11,21 @@ import CoreData
 class Init{
     init(){
         let mdao = MovieDAO(Entity: "Movie")
+        let qdao = QuestionDAO(Entity: "Question")
+        let ldao = LinkDAO(Entity: "Link")
+        
         mdao.deleteAll()
+        qdao.deleteAll()
+        ldao.deleteAll()
+        
         let apiURI = NSURL(string: "http://cccvlm.com/API/gateway/")
         let apidata : NSData? = NSData(contentsOfURL: apiURI!)
         
         do{
             let apiDictionary = try NSJSONSerialization.JSONObjectWithData(apidata!, options: []) as! NSArray
             for movie in apiDictionary {
+                
+                /*------------Insert Movie VO------------*/
                 let mvo = MovieVO()
                 mvo.category = Int((movie["category"] as? String)!)
                 mvo.index_key = Int((movie["index_key"] as? String)!)
@@ -32,17 +40,16 @@ class Init{
                     //sort 필요
                     for (k,v) in t{
                         tmp += "\(k). \(v)\n\n"
-                            //print("\(mvo.category)://\(mvo.index_key):\(k)+\(v)")
                     }
                 }
+                
                 mvo.question1 = tmp
                 
                 tmp = ""
                 if let t = movie["question2"] as? NSDictionary{
                     //sort 필요
                     for (k,v) in t{
-                        tmp += "\(k). \(v)\n\n"
-                        //print("\(mvo.category)://\(mvo.index_key):\(k)+\(v)")
+                        tmp += "\(k). \(v)\n\n"                 
                     }
                 }
                 mvo.question2 = tmp
@@ -53,14 +60,29 @@ class Init{
                 //mdatabox.save(value: mvo)
                 mdao.save(mvo)
                 
-                let qdao = QuestionDAO(Entity: "Question")
-                qdao.deleteAll()
+                var count = 0
                 for question in movie["next"] as! NSArray{
+                    
+                    /*------------Insert Question VO------------*/
+                    count += 1
                     let qvo = QuestionVO()
                     qvo.category = mvo.category
                     qvo.index_key = mvo.index_key
-                    //qvo.question_key = Int(question.key)
+                    qvo.question_key = count+1
                     qvo.question = question["question"] as? String
+                    
+                    for link in question["link"] as! NSArray{
+                        
+                        /*------------Insert Link VO------------*/
+                        let lvo = LinkVO()
+                        lvo.category = qvo.category
+                        lvo.index_key = qvo.index_key
+                        lvo.question_key = qvo.question_key
+                        lvo.next_category = Int((link["category"] as? String)!)
+                        lvo.next_index_key = Int((link["index_key"] as? String)!)
+                        
+                        ldao.save(lvo)
+                    }
                     
                     qdao.save(qvo)
                     //print(qvo.question)

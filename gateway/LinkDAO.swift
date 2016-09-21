@@ -97,4 +97,50 @@ class LinkDAO{
             print("Could not fetch \(error), \(error.userInfo)")
         }
     }
+    func getAll(category c:Int,index_key i:Int,question_key q:Int)->Array<LinkVO>{
+        
+        var list = Array<LinkVO>()
+        
+        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            if results.count > 0{
+                for question in results{
+                    let lvo = LinkVO()
+                    
+                    lvo.category = question.valueForKey("category") as? Int
+                    if c == lvo.category {
+                        lvo.index_key = question.valueForKey("index_key") as? Int
+                        if i == lvo.index_key {
+                            lvo.question_key = question.valueForKey("question_key") as? Int
+                            if q == lvo.question_key {
+                                lvo.next_category = question.valueForKey("next_category") as? Int
+                                lvo.next_index_key = question.valueForKey("next_index_key") as? Int
+                                
+                                list.append(lvo)
+                            }
+                        }
+                    }
+                    
+                   
+                    //print(list)
+                    do {
+                        try managedContext.save()            //5
+                        //people.append(person)
+                    } catch let error as NSError  {
+                        print("Could not save \(error), \(error.userInfo)")
+                    }
+                    
+                }
+                //print(results)
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return list
+    }
 }

@@ -95,4 +95,45 @@ class QuestionDAO{
             print("Could not fetch \(error), \(error.userInfo)")
         }
     }
+    func getAll(category c:Int,index_key i:Int)->Array<QuestionVO>{
+        var list = Array<QuestionVO>()
+        
+        
+        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            if results.count > 0{
+                for question in results{
+                    let qvo = QuestionVO()
+                    
+                    qvo.category = question.valueForKey("category") as? Int
+                    if c == qvo.category {
+                        qvo.index_key = question.valueForKey("index_key") as? Int
+                        if i == qvo.index_key {
+                            qvo.question = question.valueForKey("question") as? String
+                            qvo.question_key = question.valueForKey("question_key") as? Int
+                            
+                            list.append(qvo)
+                        }
+                    }
+                    do {
+                        try managedContext.save()            //5
+                        //people.append(person)
+                    } catch let error as NSError  {
+                        print("Could not save \(error), \(error.userInfo)")
+                    }
+                    
+                }
+                //print(results)
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return list
+    }
+
 }

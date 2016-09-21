@@ -29,30 +29,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="hiH-q3-kqk">
-                                <rect key="frame" x="26" y="35" width="240" height="128"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hiH-q3-kqk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="7QL-5D-CE3"/>
                             <constraint firstItem="d6Y-Zk-q21" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CgF-hD-JAU"/>
-                            <constraint firstItem="hiH-q3-kqk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="KgE-gC-7Ni"/>
                             <constraint firstItem="LVz-0v-Zqv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KpZ-0D-mxE"/>
                             <constraint firstItem="LVz-0v-Zqv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NJF-dc-doc"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="d6Y-Zk-q21" secondAttribute="bottom" constant="20" id="ga2-Ue-UFk"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="hiH-q3-kqk" id="DQq-sd-fxp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LaunchScreen.png" width="411" height="113"/>
-    </resources>
 </document>

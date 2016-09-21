@@ -20,5 +20,8 @@ class MovieQuestion:UIViewController{
         
         q1.text = paramVO.question1
         q2.text = paramVO.question2
+        
+        q1.sizeToFit()
+        q2.sizeToFit()
     }
 }

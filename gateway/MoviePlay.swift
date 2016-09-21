@@ -92,7 +92,6 @@ class MoviePlay: UITableViewController {
             default:
                 imageName = ""
             }
-            
             bgimage!.image = UIImage(named: imageName!)
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier("MoreCell")!
@@ -114,8 +113,13 @@ class MoviePlay: UITableViewController {
             
             title?.sizeToFit()
         case 3:
-            self.tableView.rowHeight = 60;
-            cell = tableView.dequeueReusableCellWithIdentifier("LinkCell")!
+            if category != 3 {
+                self.tableView.rowHeight = 60;
+                cell = tableView.dequeueReusableCellWithIdentifier("LinkCell")!
+            }else{
+                self.tableView.rowHeight = 60;
+                cell = tableView.dequeueReusableCellWithIdentifier("BlackCell")!
+            }
         default: break
 
         }
@@ -136,7 +140,7 @@ class MoviePlay: UITableViewController {
         if let nvc = segue.destinationViewController as? MovieQuestion{
             nvc.paramVO = self.paramVO
         }
-        else if let nvc = segue.destinationViewController as? MovieNext{
+        else if let nvc = segue.destinationViewController as? MovieNext2{
             nvc.paramVO = self.paramVO
         }
         
