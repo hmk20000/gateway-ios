@@ -18,15 +18,15 @@ class LinkDAO{
         self.ent = en
         //1
         let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
+            UIApplication.shared.delegate as! AppDelegate
         
         managedContext = appDelegate.managedObjectContext
         
-        entity =  NSEntityDescription.entityForName(en, inManagedObjectContext:managedContext)!
+        entity =  NSEntityDescription.entity(forEntityName: en, in:managedContext)!
     }
-    func save(v:LinkVO){
+    func save(_ v:LinkVO){
         let conn = NSManagedObject(entity: entity,
-                                   insertIntoManagedObjectContext: managedContext)
+                                   insertInto: managedContext)
         conn.setValue(v.category, forKey: "category")
         conn.setValue(v.index_key, forKey: "index_key")
         conn.setValue(v.question_key, forKey: "question_key")
@@ -41,15 +41,15 @@ class LinkDAO{
         }
     }
     func deleteAll(){
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for i in results{
                     //let tmp = i.valueForKey("name") as! String
-                    managedContext.deleteObject(i)
+                    managedContext.delete(i)
                     //print("\(tmp)")
                     do {
                         try managedContext.save()            //5
@@ -68,17 +68,17 @@ class LinkDAO{
         
     }
     func viewAll(key k:String){
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for i in results{
-                    if let tmp = i.valueForKey(k) as? String{
+                    if let tmp = i.value(forKey: k) as? String{
                         print("\(tmp)")
                     }else{
-                        let tmp = i.valueForKey(k) as? Int
+                        let tmp = i.value(forKey: k) as? Int
                         print("\(tmp)")
                     }
                     //managedContext.deleteObject(i)
@@ -101,23 +101,23 @@ class LinkDAO{
         
         var list = Array<LinkVO>()
         
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for question in results{
                     let lvo = LinkVO()
                     
-                    lvo.category = question.valueForKey("category") as? Int
+                    lvo.category = question.value(forKey: "category") as? Int
                     if c == lvo.category {
-                        lvo.index_key = question.valueForKey("index_key") as? Int
+                        lvo.index_key = question.value(forKey: "index_key") as? Int
                         if i == lvo.index_key {
-                            lvo.question_key = question.valueForKey("question_key") as? Int
+                            lvo.question_key = question.value(forKey: "question_key") as? Int
                             if q == lvo.question_key {
-                                lvo.next_category = question.valueForKey("next_category") as? Int
-                                lvo.next_index_key = question.valueForKey("next_index_key") as? Int
+                                lvo.next_category = question.value(forKey: "next_category") as? Int
+                                lvo.next_index_key = question.value(forKey: "next_index_key") as? Int
                                 
                                 list.append(lvo)
                             }

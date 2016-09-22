@@ -20,21 +20,21 @@ class MovieChoice: UITableViewController {
         self.title = paramTitle
         
         self.tableView.rowHeight = 160;
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
     }
     
-    override func tableView(tableView: UITableView,
+    override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return self.list.count
     }
     
-    override func tableView(tableView: UITableView,
-                            cellForRowAtIndexPath
-        indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt
+        indexPath: IndexPath) -> UITableViewCell {
         
-        let row = self.list[indexPath.row]
+        let row = self.list[(indexPath as NSIndexPath).row]
     
-        let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
         let bgimage = cell.viewWithTag(101) as? UIImageView
         let title = cell.viewWithTag(102) as? UILabel
         let subtitle = cell.viewWithTag(103) as? UILabel
@@ -42,13 +42,13 @@ class MovieChoice: UITableViewController {
         var imageName:String?
         switch paramKey {
         case 0:
-            imageName = "SF\(indexPath.row+1)btn.png"
+            imageName = "SF\((indexPath as NSIndexPath).row+1)btn.png"
         case 1:
-            imageName = "JF\(indexPath.row+1)btn.png"
+            imageName = "JF\((indexPath as NSIndexPath).row+1)btn.png"
         case 2:
-            imageName = "MD\(indexPath.row+1)btn.png"
+            imageName = "MD\((indexPath as NSIndexPath).row+1)btn.png"
         case 3:
-            imageName = "GS\(indexPath.row+1)btn.png"
+            imageName = "GS\((indexPath as NSIndexPath).row+1)btn.png"
         default:
             imageName = ""
         }
@@ -57,16 +57,20 @@ class MovieChoice: UITableViewController {
         title?.text = row.title
         subtitle?.text = row.subtitle
         
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.black
+        cell.selectedBackgroundView = bgColorView
+        
         return cell
     }
     var paramVO = MovieVO()
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nvc = segue.destinationViewController as? MoviePlay{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nvc = segue.destination as? MoviePlay{
             nvc.paramVO = paramVO
         }
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        paramVO = self.list[indexPath.row]
-        self.performSegueWithIdentifier("seguePlay", sender: self)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        paramVO = self.list[(indexPath as NSIndexPath).row]
+        self.performSegue(withIdentifier: "seguePlay", sender: self)
     }
 }

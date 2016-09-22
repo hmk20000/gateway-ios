@@ -1,5 +1,5 @@
 //
-//  MovieNext.swift
+//  MovieNext2.swift
 //  gateway
 //
 //  Created by ming on 2016. 9. 21..
@@ -8,20 +8,88 @@
 
 import UIKit
 
-class MovieNext:UIViewController{
-    var paramVO = MovieVO()
+class LinkPage{
+    var isLink:Bool?
+    var question:String?
+    var lvo:LinkVO?
+}
+class MovieNext: UITableViewController {
+    
+    var tmpList = Array<MovieVO>()
+    var paramKey:Int = 0
+    var paramTitle:String = ""
+    
+    var paramVO:MovieVO?
+    var list = Array<LinkPage>()
+    
     
     override func viewDidLoad() {
-        self.title = "Next"
+        /*let tmp = MovieDAO(Entity: "Movie")
+        tmpList = tmp.getAll(category: paramKey)
+        paramVO = tmpList[0]*/
+        list = Array<LinkPage>()
+        let qvoList = QuestionDAO(Entity: "Question").getAll(category: paramVO!.category!, index_key: paramVO!.index_key!)
+        for tmpQ in qvoList{
+            var lp = LinkPage()
+            lp.isLink = false
+            lp.question = tmpQ.question
+            list.append(lp)
+            //print(lp.question)
+            
+            let lvoList = LinkDAO(Entity: "Link").getAll(category: tmpQ.category!, index_key: tmpQ.index_key!, question_key: tmpQ.question_key!)
+            //print(lvoList.count)
+            
+            for tmpL in lvoList{
+                
+                lp = LinkPage()
+                lp.isLink = true
+                lp.lvo = tmpL
+                
+                list.append(lp)
+            }
+        }
+        
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 68.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
-    @IBAction func test(sender: AnyObject) {
-        performSegueWithIdentifier("segueLink", sender: self)
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+        return self.list.count
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nvc = segue.destinationViewController as? MoviePlay{
-            nvc.paramVO = self.paramVO
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt
+        indexPath: IndexPath) -> UITableViewCell {
+        
+        let row = self.list[(indexPath as NSIndexPath).row]
+        var cell = UITableViewCell()
+        if row.isLink == false{
+            cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell")!
+            let label = cell.viewWithTag(101) as? UILabel
+            
+            label!.text = row.question
+        }else{
+            cell = tableView.dequeueReusableCell(withIdentifier: "LinkCell")!
+            let label = cell.viewWithTag(101) as? UILabel
+            let tmpL = row.lvo!
+            //label?.text = findMovieName(category: tmpL.next_category!, index_key: tmpL.next_index_key!)
+            label?.text = MovieDAO(Entity: "Movie").getMovie(category: tmpL.next_category!, index_key: tmpL.next_index_key!).title
+        }
+        return cell
+    }
+    var nextVO = MovieVO()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nvc = segue.destination as? MoviePlay{
+            nvc.paramVO = nextVO
         }
     }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let lp = self.list[(indexPath as NSIndexPath).row]
+        if lp.isLink == true{
+            let tmpL = lp.lvo!
+            nextVO = MovieDAO(Entity: "Movie").getMovie(category: tmpL.next_category!, index_key: tmpL.next_index_key!)
+            self.performSegue(withIdentifier: "segueNextMovie", sender: self)
+        }        
+    }
 }
