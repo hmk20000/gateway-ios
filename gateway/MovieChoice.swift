@@ -14,7 +14,7 @@ class MovieChoice: UITableViewController {
     var paramTitle:String = ""
     var list = Array<MovieVO>()
     override func viewDidLoad() {
-        let tmp = MovieDAO(Entity: "Movie")
+        let tmp = MovieDAO()
         list = tmp.getAll(category: paramKey)
          
         self.title = paramTitle
@@ -40,15 +40,18 @@ class MovieChoice: UITableViewController {
         let subtitle = cell.viewWithTag(103) as? UILabel
         
         var imageName:String?
+        let index_key = (indexPath as NSIndexPath).row+1
         switch paramKey {
         case 0:
-            imageName = "SF\((indexPath as NSIndexPath).row+1)btn.png"
+            imageName = "SF\(index_key)btn.png"
         case 1:
-            imageName = "JF\((indexPath as NSIndexPath).row+1)btn.png"
+            imageName = "JF\(index_key)btn.png"
         case 2:
-            imageName = "MD\((indexPath as NSIndexPath).row+1)btn.png"
+            imageName = "MD\(index_key)btn.png"
         case 3:
-            imageName = "GS\((indexPath as NSIndexPath).row+1)btn.png"
+            imageName = "GS\(index_key)btn.png"
+        case 4:
+            imageName = "HU\(index_key)btn.png"
         default:
             imageName = ""
         }

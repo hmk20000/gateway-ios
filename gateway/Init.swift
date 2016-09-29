@@ -10,9 +10,9 @@ import CoreData
 
 class Init{
     init(){
-        let mdao = MovieDAO(Entity: "Movie")
-        let qdao = QuestionDAO(Entity: "Question")
-        let ldao = LinkDAO(Entity: "Link")
+        let mdao = MovieDAO()
+        let qdao = QuestionDAO()
+        let ldao = LinkDAO()
         
         mdao.deleteAll()
         qdao.deleteAll()

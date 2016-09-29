@@ -7,18 +7,19 @@
 //
 
 import UIKit
-
+import CoreData
 
 class HomeCategory: UITableViewController {
     //var people = [FreshmanVO]()
+
     var list = Array<String>()
     override func viewDidLoad() {
         list.append("SHORT FILMS")
-        list.append("JESUS FILMS")
+        list.append("JESUS")
         list.append("MAGDALENA")
         list.append("GOSPEL")
         list.append("HOW TO USE")
-        
+          
         self.tableView.rowHeight = 160;
         tableView.separatorStyle = .none
     }

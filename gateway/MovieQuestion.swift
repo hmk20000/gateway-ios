@@ -17,6 +17,7 @@ class MovieQuestion: UITableViewController {
         /*let tmp = MovieDAO(Entity: "Movie")
          paramVO = tmp.getAll(category: 0)[0]*/
         
+        //self.title = "Question"
         
         tableView.estimatedRowHeight = 68.0
         self.tableView.rowHeight = UITableViewAutomaticDimension

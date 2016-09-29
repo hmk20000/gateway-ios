@@ -10,18 +10,15 @@ import CoreData
 
 class QuestionDAO{
     var managedContext:NSManagedObjectContext
-    var entity:NSEntityDescription
-    var ent:String?
-    init(Entity en:String){
+    var entity:NSEntityDescription!
+    var ent:String!
+    init(){
         //print("Question DAO Connect")
-        self.ent = en
+        self.ent = "Question"
         //1
-        let appDelegate =
-            UIApplication.shared.delegate as! AppDelegate
+        managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        managedContext = appDelegate.managedObjectContext
-        
-        entity =  NSEntityDescription.entity(forEntityName: en, in:managedContext)!
+        entity =  NSEntityDescription.entity(forEntityName: self.ent, in:managedContext)
     }
     func save(_ v:QuestionVO){
         let conn = NSManagedObject(entity: entity,

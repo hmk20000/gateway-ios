@@ -57,6 +57,8 @@
 		3A59DEE11D922D6800CBFEA2 /* GS3btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEDE1D922D6800CBFEA2 /* GS3btn.png */; };
 		3A59DEE31D92366900CBFEA2 /* info-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEE21D92366900CBFEA2 /* info-off.png */; };
 		3A59DEE51D92431300CBFEA2 /* MD3btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEE41D92431300CBFEA2 /* MD3btn.png */; };
+		3A5F4B661D99104E00B6267E /* FavoriteVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F4B651D99104E00B6267E /* FavoriteVO.swift */; };
+		3A5F4B681D99106A00B6267E /* FavoriteDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */; };
 		3A8F6E491D92617300C8CC23 /* LinkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8F6E481D92617300C8CC23 /* LinkDAO.swift */; };
 		3AA811DB1D93AFDA0040F8CA /* MovieQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA811DA1D93AFDA0040F8CA /* MovieQuestion.swift */; };
 		3AA9C3041D915AA00042D59D /* MoviePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C3031D915AA00042D59D /* MoviePlay.swift */; };
@@ -144,6 +146,8 @@
 		3A59DEDE1D922D6800CBFEA2 /* GS3btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GS3btn.png; sourceTree = "<group>"; };
 		3A59DEE21D92366900CBFEA2 /* info-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-off.png"; sourceTree = "<group>"; };
 		3A59DEE41D92431300CBFEA2 /* MD3btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MD3btn.png; sourceTree = "<group>"; };
+		3A5F4B651D99104E00B6267E /* FavoriteVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteVO.swift; sourceTree = "<group>"; };
+		3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDAO.swift; sourceTree = "<group>"; };
 		3A8F6E481D92617300C8CC23 /* LinkDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkDAO.swift; sourceTree = "<group>"; };
 		3AA811DA1D93AFDA0040F8CA /* MovieQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieQuestion.swift; sourceTree = "<group>"; };
 		3AA9C3031D915AA00042D59D /* MoviePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePlay.swift; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 				3A3EE26C1D8FD74C005A745D /* MovieVO.swift */,
 				3A3EE2701D90C0EA005A745D /* QuesionVO.swift */,
 				3A0B3DC41D91412200FF1E6C /* LinkVO.swift */,
+				3A5F4B651D99104E00B6267E /* FavoriteVO.swift */,
 			);
 			name = VO;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				3A3EE2731D90CD67005A745D /* MovieDAO.swift */,
 				3AFC24731D90D3360082F476 /* QuestionDAO.swift */,
 				3A8F6E481D92617300C8CC23 /* LinkDAO.swift */,
+				3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -443,8 +449,9 @@
 				TargetAttributes = {
 					3A3EE22E1D8F9D46005A745D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = LBCEW7W9UW;
+						DevelopmentTeam = SZTTBDV42P;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					3A3EE2451D8F9D46005A745D = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -553,6 +560,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5F4B661D99104E00B6267E /* FavoriteVO.swift in Sources */,
+				3A5F4B681D99106A00B6267E /* FavoriteDAO.swift in Sources */,
 				3A3EE2681D8FA811005A745D /* HomeCategory.swift in Sources */,
 				3A3EE23B1D8F9D46005A745D /* gateway.xcdatamodeld in Sources */,
 				3AB82D1B1D9100AB00EA3BC5 /* ShortFilmsPlay.swift in Sources */,
@@ -716,9 +725,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SZTTBDV42P;
 				INFOPLIST_FILE = gateway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gateway;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.Gateways;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -728,9 +739,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SZTTBDV42P;
 				INFOPLIST_FILE = gateway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gateway;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.Gateways;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

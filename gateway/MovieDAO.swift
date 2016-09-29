@@ -10,20 +10,19 @@ import CoreData
 
 class MovieDAO{
     
-    var managedContext:NSManagedObjectContext
-    var entity:NSEntityDescription
-    var ent:String?
-    init(Entity en:String){
+    var managedContext:NSManagedObjectContext!
+    var entity:NSEntityDescription!
+    var ent:String!
+    init(){
         //print("Movie DAO Connect")
-        self.ent = en
+        self.ent = "Movie"
         //1
-        let appDelegate =
-            UIApplication.shared.delegate as! AppDelegate
+        managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        entity =  NSEntityDescription.entity(forEntityName: self.ent, in:managedContext)
         
-        managedContext = appDelegate.managedObjectContext
-        
-        entity =  NSEntityDescription.entity(forEntityName: en, in:managedContext)!
         //deleteAll()
+        //saveLoginData(userName: "1")
     }
     
     func save(_ v:MovieVO){
@@ -45,6 +44,24 @@ class MovieDAO{
             //people.append(person)
         } catch let error as NSError  {
             print("Movie DAO Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
+    /*test Funtion*/
+    func saveLoginData(/*accessToken: String,*/ userName: String) {
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
+        fetchRequest.predicate = NSPredicate(format: "category = %@ AND index_key = %@", argumentArray: [userName, 1])
+        
+        do{
+            let results =
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
+            if results.count > 0{
+                for i in results{
+                    print(i)
+                }
+            }
+        }catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
         }
     }
     func deleteAll(){
@@ -157,32 +174,27 @@ class MovieDAO{
         var rtn = MovieVO()
         
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
+        fetchRequest.predicate = NSPredicate(format: "category = %@ AND index_key = %@", argumentArray: [c, i])
         
         do {
             let results =
                 try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
-                for movie in results{
-                    let mvo = MovieVO()
-                    
-                    mvo.category = movie.value(forKey: "category") as? Int
-                    if c == mvo.category {
-                        mvo.index_key = movie.value(forKey: "index_key") as? Int
-                        if i == mvo.index_key {
-                            mvo.title = movie.value(forKey: "title") as? String
-                            mvo.subtitle = movie.value(forKey: "subtitle") as? String
-                            mvo.keyword = movie.value(forKey: "keyword") as? String
-                            mvo.time = movie.value(forKey: "time") as? String
-                            mvo.description = movie.value(forKey: "descriptions") as? String
-                            mvo.question1 = movie.value(forKey: "question1") as? String
-                            mvo.question2 = movie.value(forKey: "question2") as? String
-                            mvo.url = movie.value(forKey: "url") as? String
-                            mvo.lang = movie.value(forKey: "lang") as? String
-                            
-                            rtn = mvo
-                        }
-                    }
-                }
+                let mvo = MovieVO()
+                let movie = results[0]
+                mvo.category = movie.value(forKey: "category") as? Int
+                mvo.index_key = movie.value(forKey: "index_key") as? Int
+                mvo.title = movie.value(forKey: "title") as? String
+                mvo.subtitle = movie.value(forKey: "subtitle") as? String
+                mvo.keyword = movie.value(forKey: "keyword") as? String
+                mvo.time = movie.value(forKey: "time") as? String
+                mvo.description = movie.value(forKey: "descriptions") as? String
+                mvo.question1 = movie.value(forKey: "question1") as? String
+                mvo.question2 = movie.value(forKey: "question2") as? String
+                mvo.url = movie.value(forKey: "url") as? String
+                mvo.lang = movie.value(forKey: "lang") as? String
+                
+                rtn = mvo
             }
         }catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")

@@ -9,12 +9,22 @@
 import UIKit
 import AVKit
 import AVFoundation
-
+extension UITableView {
+    func scrollToTop(animated: Bool) {
+        setContentOffset(CGPoint.zero, animated: animated)
+    }
+}
 class MoviePlay: UITableViewController {
     var paramVO:MovieVO = MovieVO()
     var category:Int = 0
     var index_key:Int = 0
     var screenHeight:Int = 0
+    let fdao = FavoriteDAO()
+    let hdao = HistoryDAO()
+    
+    let serverURL = "http://cccvlm.com/sfproject/movies/"
+    var localURL:String!
+    var filename:String!
     
     override func viewDidLoad() {
         self.title = paramVO.title
@@ -22,18 +32,46 @@ class MoviePlay: UITableViewController {
         self.category = paramVO.category!
         
         let bounds = UIScreen.main.bounds
-        let height = bounds.size.height
+        screenHeight = Int(bounds.size.height)
         
-        screenHeight = Int(height)-240-160
-        
-        //print(paramVO.description)
         tableView.separatorStyle = .none
+        
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        localURL = dirPaths[0] as String
+        filename = "\(paramVO.url!.components(separatedBy: "/")[1])".removingPercentEncoding
+        print(localURL)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    func fileCheck(fileName name:String)->String{
+
+        let filemgr = FileManager.default
+        let LocalDirectoryFile = "\(localURL)/\(name)"
+        
+        if filemgr.fileExists(atPath: LocalDirectoryFile) {
+            return LocalDirectoryFile
+        }else{
+            return ""
+        }
+
+    }
     @IBAction func playMovie(_ sender: AnyObject) {
         if let lang = paramVO.lang{
             if let url = paramVO.url{
-                let MovieUrl = URL(string: "http://cccvlm.com/sfproject/movies/\(lang)/\(url)")!
+
+                var MovieUrl:URL!
+                // [1] 파일 존재 여부 확인
+                let localUrl = fileCheck(fileName: filename)
+                if localUrl != ""{
+                    print("[1] File exists")
+                    MovieUrl = URL(fileURLWithPath: localUrl)
+                }else{
+                    print("[1] File not found!!")
+                    MovieUrl = URL(string: "\(serverURL)/\(lang)/\(url)")!
+                }
+                
                 let player = AVPlayer(url: MovieUrl)
                 let playerController = AVPlayerViewController()
                 
@@ -44,21 +82,38 @@ class MoviePlay: UITableViewController {
                 }
             }
         }
+        if !hdao.get(MovieVO: paramVO){
+            hdao.save(category: paramVO.category!, index_key: paramVO.index_key!)
+        }
     }
+    
     @IBAction func favorite(_ sender: AnyObject) {
-        print("favorite")
+        //heart.setBackgroundImage(, for: .normal)
+        let heart = sender as! UIButton
+        if !fdao.get(MovieVO: paramVO){
+            heart.setBackgroundImage(#imageLiteral(resourceName: "heart-click.png"), for: .normal)
+            fdao.save(category: paramVO.category!, index_key: paramVO.index_key!)
+        }else{
+            heart.setBackgroundImage(#imageLiteral(resourceName: "heart.png"), for: .normal)
+            fdao.delete(category: paramVO.category!, index_key: paramVO.index_key!)
+        }
     }
+    
     @IBAction func download(_ sender: AnyObject) {
+        if let lang = paramVO.lang{
+            if let url = paramVO.url{
+                downloadVideoLinkAndCreateAsset("\(serverURL)/\(lang)/\(url)")
+            }
+        }
         print("download")
     }
+    
     @IBAction func share(_ sender: AnyObject) {
         print("share")
     }
     
-    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        //return self.list.count
         return 4
     }
     
@@ -93,17 +148,27 @@ class MoviePlay: UITableViewController {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "MoreCell")!
             
+            let heart = cell.viewWithTag(101) as? UIButton
+            
+            if fdao.get(MovieVO: paramVO){
+                heart?.setBackgroundImage(#imageLiteral(resourceName: "heart-click.png"), for: .normal)
+            }else{
+                heart?.setBackgroundImage(#imageLiteral(resourceName: "heart.png"), for: .normal)
+            }
+            
             self.tableView.rowHeight = 40;
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell")!
             
-            self.tableView.rowHeight = CGFloat(screenHeight);
+            self.tableView.rowHeight = CGFloat(screenHeight-180-40-60-110);
             let stackView = cell.viewWithTag(100) as? UIStackView
             let title = cell.viewWithTag(101) as? UILabel
             let subtitle = cell.viewWithTag(102) as? UILabel
             let keyword = cell.viewWithTag(103) as? UILabel
-            let description = cell.viewWithTag(104) as? UILabel
-
+            let description = cell.viewWithTag(104) as? UITextView
+            
+            description?.scrollsToTop = true
+            
             if category != 0 {
                 stackView?.axis = .vertical
             }
@@ -118,6 +183,11 @@ class MoviePlay: UITableViewController {
             if category != 3 {
                 self.tableView.rowHeight = 60;
                 cell = tableView.dequeueReusableCell(withIdentifier: "LinkCell")!
+                let question = cell.viewWithTag(101) as? UIButton
+                let next = cell.viewWithTag(102) as? UIButton
+                
+                question?.layer.cornerRadius = 5
+                next?.layer.cornerRadius = 5
             }else{
                 self.tableView.rowHeight = 60;
                 cell = tableView.dequeueReusableCell(withIdentifier: "BlackCell")!
@@ -147,9 +217,31 @@ class MoviePlay: UITableViewController {
         }
         
     }
-    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MovieKey = self.list[indexPath.row].index_key!
-        paramVO = self.list[indexPath.row]
-        self.performSegueWithIdentifier("seguePlay", sender: self)
-    }*/
+
+    func downloadVideoLinkAndCreateAsset(_ videoLink: String) {
+        // use guard to make sure you have a valid url
+        guard let videoURL = URL(string: videoLink) else { return }
+        let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        print(documentsDirectoryURL.path)
+        // check if the file already exist at the destination folder if you don't want to download it twice
+        if !FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(videoURL.lastPathComponent).path) {
+            // set up your download task
+            
+            URLSession.shared.downloadTask(with: videoURL) { (location, response, error) -> Void in
+                // use guard to unwrap your optional url
+                guard let location = location else { return }
+                // create a deatination url with the server response suggested file name
+                let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? videoURL.lastPathComponent)
+                
+                do {    try FileManager.default.moveItem(at: location, to: destinationURL)
+                }  catch let error as NSError { print(error.localizedDescription)}
+                print("Video asset created")
+                let ddao = DownDAO()
+                ddao.save(category: self.paramVO.category!, index_key: self.paramVO.index_key!)
+            }.resume()
+            
+        } else {
+            print("file already exists at destination url")
+        }
+    }
 }

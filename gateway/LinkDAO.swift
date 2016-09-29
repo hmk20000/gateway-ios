@@ -11,18 +11,15 @@ import CoreData
 
 class LinkDAO{
     var managedContext:NSManagedObjectContext
-    var entity:NSEntityDescription
-    var ent:String?
-    init(Entity en:String){
+    var entity:NSEntityDescription!
+    var ent:String!
+    init(){
         //print("Link DAO Connect")
-        self.ent = en
-        //1
-        let appDelegate =
-            UIApplication.shared.delegate as! AppDelegate
+        self.ent = "Link"
+        //1        
+        managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        managedContext = appDelegate.managedObjectContext
-        
-        entity =  NSEntityDescription.entity(forEntityName: en, in:managedContext)!
+        entity =  NSEntityDescription.entity(forEntityName: self.ent, in:managedContext)
     }
     func save(_ v:LinkVO){
         let conn = NSManagedObject(entity: entity,
