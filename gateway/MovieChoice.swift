@@ -23,6 +23,10 @@ class MovieChoice: UITableViewController {
         tableView.separatorStyle = .none
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return self.list.count
@@ -74,6 +78,37 @@ class MovieChoice: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         paramVO = self.list[(indexPath as NSIndexPath).row]
-        self.performSegue(withIdentifier: "seguePlay", sender: self)
+        
+        if (paramVO.category == 4) && (paramVO.index_key == 3){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // in half a second..
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController")
+                self.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+                self.modalPresentationStyle = .currentContext
+                self.present(vc!, animated: true, completion: nil)
+            }//TutorialViewController
+        }else{
+            self.performSegue(withIdentifier: "seguePlay", sender: self)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let title = cell.viewWithTag(102) as? UILabel
+        let subtitle = cell.viewWithTag(103) as? UILabel
+        UIView.animate(withDuration: 0.0, animations: {
+            title?.frame.origin.y = (title?.frame.origin.y)! + 30
+            subtitle?.frame.origin.y = (subtitle?.frame.origin.y)! + 30
+            title?.alpha = 0.0
+            subtitle?.alpha = 0.0
+        })
+    }
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let title = cell.viewWithTag(102) as? UILabel
+        let subtitle = cell.viewWithTag(103) as? UILabel
+        UIView.animate(withDuration: 0.5, animations: {
+            title?.frame.origin.y = (title?.frame.origin.y)! - 30
+            subtitle?.frame.origin.y = (subtitle?.frame.origin.y)! - 30
+            title?.alpha = 1
+            subtitle?.alpha = 1
+        })
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+
 extension UITableView {
     func scrollToTop(animated: Bool) {
         setContentOffset(CGPoint.zero, animated: animated)
@@ -39,11 +40,13 @@ class MoviePlay: UITableViewController {
         let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         localURL = dirPaths[0] as String
         filename = "\(paramVO.url!.components(separatedBy: "/")[1])".removingPercentEncoding
-        print(localURL)
+        //tableView.layoutMargins = UIEdgeInsets.zero
+        //tableView.separatorInset = UIEdgeInsets.zero
+        //print("MoviePlaly viewDidLoad() [Local URL] : \(localURL)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     func fileCheck(fileName name:String)->String{
 
@@ -57,20 +60,41 @@ class MoviePlay: UITableViewController {
         }
 
     }
-    @IBAction func playMovie(_ sender: AnyObject) {
+    func fileFindPlay(){
+        
+        var MovieUrl:URL!
+        // [1] 파일 존재 여부 확인
+        let localUrl = fileCheck(fileName: filename)
+        if localUrl != ""{
+            print("[1] File exists")
+            MovieUrl = URL(fileURLWithPath: localUrl)
+        }else{
+            /*let alertController = UIAlertController(title: "다운로드 된 파일을 찾을 수 없습니다.", message: "파일을 다운로드 후 재생하시겠습니까?", preferredStyle: UIAlertControllerStyle.actionSheet)
+            //UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()}
+            alertController.addAction(UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel,handler: nil))
+            alertController.addAction(UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.OnlinePlay()})
+            alertController.addAction(UIAlertAction(title: "파일 다운로드", style: UIAlertActionStyle.default))
+            self.present(alertController, animated: true, completion: nil)*/
+        }
+        
+        let player = AVPlayer(url: MovieUrl)
+        let playerController = AVPlayerViewController()
+        
+        playerController.player = player
+        
+        self.present(playerController, animated: true){
+            player.play()
+        }
+        if !hdao.get(MovieVO: paramVO){
+            hdao.save(category: paramVO.category!, index_key: paramVO.index_key!)
+        }
+    }
+    
+    func OnlinePlay(){
         if let lang = paramVO.lang{
             if let url = paramVO.url{
-
                 var MovieUrl:URL!
-                // [1] 파일 존재 여부 확인
-                let localUrl = fileCheck(fileName: filename)
-                if localUrl != ""{
-                    print("[1] File exists")
-                    MovieUrl = URL(fileURLWithPath: localUrl)
-                }else{
-                    print("[1] File not found!!")
-                    MovieUrl = URL(string: "\(serverURL)/\(lang)/\(url)")!
-                }
+                MovieUrl = URL(string: "\(serverURL)/\(lang)/\(url)")!
                 
                 let player = AVPlayer(url: MovieUrl)
                 let playerController = AVPlayerViewController()
@@ -82,9 +106,18 @@ class MoviePlay: UITableViewController {
                 }
             }
         }
-        if !hdao.get(MovieVO: paramVO){
-            hdao.save(category: paramVO.category!, index_key: paramVO.index_key!)
-        }
+    }
+    
+    @IBAction func playMovie(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: "재생 방법 선택", message:
+            "와이파이 환경에서 다운로드 후 재생을 권장합니다. 온라인 재생 클릭시 데이터 요금이 발생 할 수 있습니다.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        //UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()}
+        alertController.addAction(UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel,handler: nil))
+        alertController.addAction(UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.OnlinePlay()})
+        alertController.addAction(UIAlertAction(title: "다운로드 후 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()})
+        self.present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     @IBAction func favorite(_ sender: AnyObject) {
@@ -105,8 +138,10 @@ class MoviePlay: UITableViewController {
                 downloadVideoLinkAndCreateAsset("\(serverURL)/\(lang)/\(url)")
             }
         }
+        
         print("download")
     }
+    
     
     @IBAction func share(_ sender: AnyObject) {
         print("share")
@@ -116,7 +151,7 @@ class MoviePlay: UITableViewController {
                             numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
+
     override func tableView(_ tableView: UITableView,
                             cellForRowAt
         indexPath: IndexPath) -> UITableViewCell {
@@ -145,8 +180,28 @@ class MoviePlay: UITableViewController {
                 imageName = ""
             }
             bgimage!.image = UIImage(named: imageName!)
+            let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+            // 2
+            let blurView = UIVisualEffectView(effect: darkBlur)
+            blurView.frame = (bgimage?.bounds)!
+            // 3
+            bgimage?.addSubview(blurView)
+
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "MoreCell")!
+            
+            let stackView = cell.viewWithTag(100) as? UIStackView
+            let title = cell.viewWithTag(101) as? UILabel
+            let subtitle = cell.viewWithTag(102) as? UILabel
+            
+            if category != 0 {
+                stackView?.axis = .vertical
+            }
+            
+            title?.text = paramVO.title
+            subtitle?.text = "(\(paramVO.subtitle!))"
+            
+            title?.sizeToFit()
             
             let heart = cell.viewWithTag(101) as? UIButton
             
@@ -156,29 +211,23 @@ class MoviePlay: UITableViewController {
                 heart?.setBackgroundImage(#imageLiteral(resourceName: "heart.png"), for: .normal)
             }
             
-            self.tableView.rowHeight = 40;
+            self.tableView.rowHeight = 60;
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell")!
+            //screenHeigth - PlayerCell[180] - MoreCell[60] - LinkCell[60] - NavigationBar[40] - title[20] - tabBar[50]
+            self.tableView.rowHeight = CGFloat(screenHeight-180-60-60-40-20-50);
             
-            self.tableView.rowHeight = CGFloat(screenHeight-180-40-60-110);
-            let stackView = cell.viewWithTag(100) as? UIStackView
-            let title = cell.viewWithTag(101) as? UILabel
-            let subtitle = cell.viewWithTag(102) as? UILabel
             let keyword = cell.viewWithTag(103) as? UILabel
             let description = cell.viewWithTag(104) as? UITextView
             
             description?.scrollsToTop = true
             
-            if category != 0 {
-                stackView?.axis = .vertical
-            }
+            description?.isScrollEnabled = true
             
-            title?.text = paramVO.title
-            subtitle?.text = "(\(paramVO.subtitle!))"
             keyword?.text = paramVO.keyword
             description?.text = paramVO.description
             
-            title?.sizeToFit()
+           
         case 3:
             if category != 3 {
                 self.tableView.rowHeight = 60;
