@@ -105,6 +105,9 @@ class HomeCategory: UITableViewController {
         paramtitle = self.list[(indexPath as NSIndexPath).row]
         self.performSegue(withIdentifier: "segueNext", sender: self)
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return UIInterfaceOrientationMask.portrait
+    }
 }
 class firstTimeChecker{
     var managedContext:NSManagedObjectContext!

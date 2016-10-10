@@ -81,7 +81,8 @@ class MovieChoice: UITableViewController {
         
         if (paramVO.category == 4) && (paramVO.index_key == 3){
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // in half a second..
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController") as? TutorialViewController
+                vc?.page = 1
                 self.modalTransitionStyle = UIModalTransitionStyle.coverVertical
                 self.modalPresentationStyle = .currentContext
                 self.present(vc!, animated: true, completion: nil)
@@ -110,5 +111,8 @@ class MovieChoice: UITableViewController {
             title?.alpha = 1
             subtitle?.alpha = 1
         })
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return UIInterfaceOrientationMask.portrait
     }
 }
