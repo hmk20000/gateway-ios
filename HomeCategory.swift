@@ -18,7 +18,7 @@ class HomeCategory: UITableViewController {
         list.append("JESUS")
         list.append("MAGDALENA")
         list.append("GOSPEL")
-        list.append("HOW TO USE")
+        //list.append("HOW TO USE")
           
         self.tableView.rowHeight = 160;
         tableView.separatorStyle = .none

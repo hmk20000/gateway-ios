@@ -44,8 +44,18 @@ class MovieQuestion: UITableViewController {
         case 1, 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell")!
             let label = cell.viewWithTag(101) as? UILabel
-            if indexPath.row == 1   { label?.text = paramVO?.question1   }
-            else                    { label?.text = paramVO?.question2   }
+            var tmp:String?
+            if indexPath.row == 1   { tmp = paramVO?.question1   }
+            else                    { tmp = paramVO?.question2   }
+            //filename = "\(paramVO.url!.components(separatedBy: "/")[1])".removingPercentEncoding
+            let t = tmp?.components(separatedBy: "\n\n")
+            for i in t!{
+                if i != ""{
+                    print(i.components(separatedBy: ". ")[0])
+                    print(i.components(separatedBy: ". ")[1])
+                }
+            }
+            label?.text = tmp
         default: break
         }
 

@@ -33,6 +33,11 @@ class MovieNext: UITableViewController {
         
         list = Array<LinkPage>()
         let qvoList = QuestionDAO().getAll(category: paramVO!.category!, index_key: paramVO!.index_key!)
+        
+        let lp = LinkPage()
+        lp.isLink = 3
+        list.append(lp)
+        
         for tmpQ in qvoList{
             var lp = LinkPage()
             lp.isLink = 0
@@ -75,7 +80,9 @@ class MovieNext: UITableViewController {
         
         let row = self.list[(indexPath as NSIndexPath).row]
         var cell = UITableViewCell()
-        if row.isLink == 0{
+        if (indexPath as NSIndexPath).row == 0{
+            cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell")!
+        }else if row.isLink == 0{
             cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell")!
             let label = cell.viewWithTag(101) as? UILabel
             

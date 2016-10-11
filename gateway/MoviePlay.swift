@@ -38,7 +38,8 @@ class MoviePlay: UITableViewController {
         tableView.separatorStyle = .none
         
         let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        localURL = dirPaths[0] as String
+        localURL = dirPaths[0]
+        
         filename = "\(paramVO.url!.components(separatedBy: "/")[1])".removingPercentEncoding
         //tableView.layoutMargins = UIEdgeInsets.zero
         //tableView.separatorInset = UIEdgeInsets.zero
@@ -51,8 +52,7 @@ class MoviePlay: UITableViewController {
     func fileCheck(fileName name:String)->String{
 
         let filemgr = FileManager.default
-        let LocalDirectoryFile = "\(localURL)/\(name)"
-        
+        let LocalDirectoryFile = "\(localURL as String)/\(name)"
         if filemgr.fileExists(atPath: LocalDirectoryFile) {
             return LocalDirectoryFile
         }else{
@@ -61,7 +61,6 @@ class MoviePlay: UITableViewController {
 
     }
     func fileFindPlay(){
-        
         var MovieUrl:URL!
         // [1] 파일 존재 여부 확인
         let localUrl = fileCheck(fileName: filename)
@@ -69,12 +68,8 @@ class MoviePlay: UITableViewController {
             print("[1] File exists")
             MovieUrl = URL(fileURLWithPath: localUrl)
         }else{
-            /*let alertController = UIAlertController(title: "다운로드 된 파일을 찾을 수 없습니다.", message: "파일을 다운로드 후 재생하시겠습니까?", preferredStyle: UIAlertControllerStyle.actionSheet)
-            //UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()}
-            alertController.addAction(UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel,handler: nil))
-            alertController.addAction(UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.OnlinePlay()})
-            alertController.addAction(UIAlertAction(title: "파일 다운로드", style: UIAlertActionStyle.default))
-            self.present(alertController, animated: true, completion: nil)*/
+            download(true as AnyObject)
+            MovieUrl = URL(fileURLWithPath: localUrl)
         }
         
         let player = AVPlayer(url: MovieUrl)
@@ -109,14 +104,14 @@ class MoviePlay: UITableViewController {
     }
     
     @IBAction func playMovie(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "재생 방법 선택", message:
-            "와이파이 환경에서 다운로드 후 재생을 권장합니다. 온라인 재생 클릭시 데이터 요금이 발생 할 수 있습니다.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        /*let alertController = UIAlertController(title: "재생 방법 선택", message:
+            "와이파이 환경에서 다운로드 후 재생을 권장합니다.\n 온라인 재생 클릭시 데이터 요금이 발생 할 수 있습니다.", preferredStyle: UIAlertControllerStyle.actionSheet)
         //UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()}
         alertController.addAction(UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel,handler: nil))
         alertController.addAction(UIAlertAction(title: "온라인 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.OnlinePlay()})
         alertController.addAction(UIAlertAction(title: "다운로드 후 재생", style: UIAlertActionStyle.default) { (UIAlertAction) in self.fileFindPlay()})
         self.present(alertController, animated: true, completion: nil)
-        
+        */
         
     }
     
@@ -186,6 +181,19 @@ class MoviePlay: UITableViewController {
             blurView.frame = (bgimage?.bounds)!
             // 3
             bgimage?.addSubview(blurView)
+            /*------*/
+            
+            let webview = cell.viewWithTag(102) as! UIWebView
+            
+            webview.alpha = 1
+            webview.backgroundColor = UIColor.blue
+            //webview.scrollView.isScrollEnabled = false
+            //webview.scrollView.bounces = false
+            
+            webview.allowsInlineMediaPlayback = true
+            webview.loadRequest(URLRequest(url:URL(string: "https://www.youtube.com/embed/lI2Ix0N4WUg")!))
+            
+            /*--------*/
 
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "MoreCell")!

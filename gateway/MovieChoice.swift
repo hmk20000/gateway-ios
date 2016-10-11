@@ -79,14 +79,16 @@ class MovieChoice: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         paramVO = self.list[(indexPath as NSIndexPath).row]
         
-        if (paramVO.category == 4) && (paramVO.index_key == 3){
+        if (paramVO.category == 3) && (paramVO.index_key == 3){
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // in half a second..
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController") as? TutorialViewController
                 vc?.page = 1
-                self.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                self.modalPresentationStyle = .currentContext
+                self.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                self.modalPresentationStyle = .overCurrentContext
                 self.present(vc!, animated: true, completion: nil)
             }//TutorialViewController
+        }else if (paramVO.category == 4)/* && (paramVO.index_key == 3)*/{
+            
         }else{
             self.performSegue(withIdentifier: "seguePlay", sender: self)
         }
