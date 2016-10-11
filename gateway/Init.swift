@@ -10,21 +10,21 @@ import CoreData
 
 class Init{
     init(){
-        let mdao = MovieDAO(Entity: "Movie")
-        let qdao = QuestionDAO(Entity: "Question")
-        let ldao = LinkDAO(Entity: "Link")
+        let mdao = MovieDAO()
+        let qdao = QuestionDAO()
+        let ldao = LinkDAO()
         
         mdao.deleteAll()
         qdao.deleteAll()
         ldao.deleteAll()
         
-        let apiURI = NSURL(string: "http://cccvlm.com/API/gateway/")
-        let apidata : NSData? = NSData(contentsOfURL: apiURI!)
-        
+        let apiURI = URL(string: "http://cccvlm.com/API/gateway/")
+        let apidata : Data? = try? Data(contentsOf: apiURI!)
+
         do{
-            let apiDictionary = try NSJSONSerialization.JSONObjectWithData(apidata!, options: []) as! NSArray
-            for movie in apiDictionary {
-                
+            let apiDictionary = try JSONSerialization.jsonObject(with: apidata!, options: []) as! NSArray
+            for tmpMovie in apiDictionary {
+                let movie = tmpMovie as! [String:Any]
                 /*------------Insert Movie VO------------*/
                 let mvo = MovieVO()
                 mvo.category = Int((movie["category"] as? String)!)
@@ -61,8 +61,8 @@ class Init{
                 mdao.save(mvo)
                 
                 var count = 0
-                for question in movie["next"] as! NSArray{
-                    
+                for tmpQuestion in movie["next"] as! NSArray{
+                    let question = tmpQuestion as! [String:Any]
                     /*------------Insert Question VO------------*/
                     count += 1
                     let qvo = QuestionVO()
@@ -71,8 +71,8 @@ class Init{
                     qvo.question_key = count+1
                     qvo.question = question["question"] as? String
                     
-                    for link in question["link"] as! NSArray{
-                        
+                    for tmpLink in question["link"] as! NSArray{
+                        let link = tmpLink as! [String:Any]
                         /*------------Insert Link VO------------*/
                         let lvo = LinkVO()
                         lvo.category = qvo.category

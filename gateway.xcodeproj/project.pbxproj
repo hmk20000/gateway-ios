@@ -57,9 +57,10 @@
 		3A59DEE11D922D6800CBFEA2 /* GS3btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEDE1D922D6800CBFEA2 /* GS3btn.png */; };
 		3A59DEE31D92366900CBFEA2 /* info-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEE21D92366900CBFEA2 /* info-off.png */; };
 		3A59DEE51D92431300CBFEA2 /* MD3btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A59DEE41D92431300CBFEA2 /* MD3btn.png */; };
+		3A5F4B661D99104E00B6267E /* FavoriteVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F4B651D99104E00B6267E /* FavoriteVO.swift */; };
+		3A5F4B681D99106A00B6267E /* FavoriteDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */; };
 		3A8F6E491D92617300C8CC23 /* LinkDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8F6E481D92617300C8CC23 /* LinkDAO.swift */; };
-		3A8F6E4B1D92629C00C8CC23 /* MovieQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8F6E4A1D92629C00C8CC23 /* MovieQuestion.swift */; };
-		3A8F6E4D1D92679B00C8CC23 /* MovieNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8F6E4C1D92679B00C8CC23 /* MovieNext.swift */; };
+		3AA811DB1D93AFDA0040F8CA /* MovieQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA811DA1D93AFDA0040F8CA /* MovieQuestion.swift */; };
 		3AA9C3041D915AA00042D59D /* MoviePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C3031D915AA00042D59D /* MoviePlay.swift */; };
 		3AA9C30A1D9179AB0042D59D /* heart-click.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9C3061D9179AB0042D59D /* heart-click.png */; };
 		3AA9C30B1D9179AB0042D59D /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9C3071D9179AB0042D59D /* heart.png */; };
@@ -67,9 +68,8 @@
 		3AA9C30D1D9179AB0042D59D /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9C3091D9179AB0042D59D /* share.png */; };
 		3AB82D191D90FA1500EA3BC5 /* MovieChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */; };
 		3AB82D1B1D9100AB00EA3BC5 /* ShortFilmsPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB82D1A1D9100AB00EA3BC5 /* ShortFilmsPlay.swift */; };
-		3AB82D221D91226600EA3BC5 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB82D211D91226600EA3BC5 /* LaunchScreen.png */; };
 		3AFC24741D90D3360082F476 /* QuestionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC24731D90D3360082F476 /* QuestionDAO.swift */; };
-		3AFE335F1D92A1B700483E3A /* MovieNext2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE335E1D92A1B700483E3A /* MovieNext2.swift */; };
+		3AFE335F1D92A1B700483E3A /* MovieNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE335E1D92A1B700483E3A /* MovieNext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,9 +146,10 @@
 		3A59DEDE1D922D6800CBFEA2 /* GS3btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GS3btn.png; sourceTree = "<group>"; };
 		3A59DEE21D92366900CBFEA2 /* info-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-off.png"; sourceTree = "<group>"; };
 		3A59DEE41D92431300CBFEA2 /* MD3btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MD3btn.png; sourceTree = "<group>"; };
+		3A5F4B651D99104E00B6267E /* FavoriteVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteVO.swift; sourceTree = "<group>"; };
+		3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDAO.swift; sourceTree = "<group>"; };
 		3A8F6E481D92617300C8CC23 /* LinkDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkDAO.swift; sourceTree = "<group>"; };
-		3A8F6E4A1D92629C00C8CC23 /* MovieQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieQuestion.swift; sourceTree = "<group>"; };
-		3A8F6E4C1D92679B00C8CC23 /* MovieNext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieNext.swift; sourceTree = "<group>"; };
+		3AA811DA1D93AFDA0040F8CA /* MovieQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieQuestion.swift; sourceTree = "<group>"; };
 		3AA9C3031D915AA00042D59D /* MoviePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePlay.swift; sourceTree = "<group>"; };
 		3AA9C3061D9179AB0042D59D /* heart-click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-click.png"; sourceTree = "<group>"; };
 		3AA9C3071D9179AB0042D59D /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -156,9 +157,8 @@
 		3AA9C3091D9179AB0042D59D /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieChoice.swift; sourceTree = "<group>"; };
 		3AB82D1A1D9100AB00EA3BC5 /* ShortFilmsPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortFilmsPlay.swift; sourceTree = "<group>"; };
-		3AB82D211D91226600EA3BC5 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		3AFC24731D90D3360082F476 /* QuestionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDAO.swift; sourceTree = "<group>"; };
-		3AFE335E1D92A1B700483E3A /* MovieNext2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieNext2.swift; sourceTree = "<group>"; };
+		3AFE335E1D92A1B700483E3A /* MovieNext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieNext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +280,7 @@
 				3A3EE26C1D8FD74C005A745D /* MovieVO.swift */,
 				3A3EE2701D90C0EA005A745D /* QuesionVO.swift */,
 				3A0B3DC41D91412200FF1E6C /* LinkVO.swift */,
+				3A5F4B651D99104E00B6267E /* FavoriteVO.swift */,
 			);
 			name = VO;
 			sourceTree = "<group>";
@@ -290,6 +291,7 @@
 				3A3EE2731D90CD67005A745D /* MovieDAO.swift */,
 				3AFC24731D90D3360082F476 /* QuestionDAO.swift */,
 				3A8F6E481D92617300C8CC23 /* LinkDAO.swift */,
+				3A5F4B671D99106A00B6267E /* FavoriteDAO.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -348,9 +350,8 @@
 				3A3EE2671D8FA811005A745D /* HomeCategory.swift */,
 				3AB82D181D90FA1500EA3BC5 /* MovieChoice.swift */,
 				3AA9C3031D915AA00042D59D /* MoviePlay.swift */,
-				3A8F6E4A1D92629C00C8CC23 /* MovieQuestion.swift */,
-				3A8F6E4C1D92679B00C8CC23 /* MovieNext.swift */,
-				3AFE335E1D92A1B700483E3A /* MovieNext2.swift */,
+				3AFE335E1D92A1B700483E3A /* MovieNext.swift */,
+				3AA811DA1D93AFDA0040F8CA /* MovieQuestion.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -376,7 +377,6 @@
 				3A59DEDA1D922D1300CBFEA2 /* Movie */,
 				3AA9C3051D91797A0042D59D /* Icon */,
 				3A0B3DA01D9128F400FF1E6C /* Home */,
-				3AB82D211D91226600EA3BC5 /* LaunchScreen.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -444,21 +444,25 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = cccvlm;
 				TargetAttributes = {
 					3A3EE22E1D8F9D46005A745D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = LBCEW7W9UW;
+						DevelopmentTeam = SZTTBDV42P;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					3A3EE2451D8F9D46005A745D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = LBCEW7W9UW;
+						LastSwiftMigration = 0800;
 						TestTargetID = 3A3EE22E1D8F9D46005A745D;
 					};
 					3A3EE2501D8F9D46005A745D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = LBCEW7W9UW;
+						LastSwiftMigration = 0800;
 						TestTargetID = 3A3EE22E1D8F9D46005A745D;
 					};
 				};
@@ -489,7 +493,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A59DEC51D92271300CBFEA2 /* JF6btn.png in Resources */,
-				3AB82D221D91226600EA3BC5 /* LaunchScreen.png in Resources */,
 				3A59DECE1D92277F00CBFEA2 /* MD2btn.png in Resources */,
 				3A59DEE51D92431300CBFEA2 /* MD3btn.png in Resources */,
 				3AA9C30B1D9179AB0042D59D /* heart.png in Resources */,
@@ -557,7 +560,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8F6E4B1D92629C00C8CC23 /* MovieQuestion.swift in Sources */,
+				3A5F4B661D99104E00B6267E /* FavoriteVO.swift in Sources */,
+				3A5F4B681D99106A00B6267E /* FavoriteDAO.swift in Sources */,
 				3A3EE2681D8FA811005A745D /* HomeCategory.swift in Sources */,
 				3A3EE23B1D8F9D46005A745D /* gateway.xcdatamodeld in Sources */,
 				3AB82D1B1D9100AB00EA3BC5 /* ShortFilmsPlay.swift in Sources */,
@@ -565,11 +569,11 @@
 				3A3EE2741D90CD67005A745D /* MovieDAO.swift in Sources */,
 				3AFC24741D90D3360082F476 /* QuestionDAO.swift in Sources */,
 				3A8F6E491D92617300C8CC23 /* LinkDAO.swift in Sources */,
-				3A8F6E4D1D92679B00C8CC23 /* MovieNext.swift in Sources */,
 				3AB82D191D90FA1500EA3BC5 /* MovieChoice.swift in Sources */,
 				3A3EE2711D90C0EA005A745D /* QuesionVO.swift in Sources */,
+				3AA811DB1D93AFDA0040F8CA /* MovieQuestion.swift in Sources */,
 				3A3EE26A1D8FACFB005A745D /* Init.swift in Sources */,
-				3AFE335F1D92A1B700483E3A /* MovieNext2.swift in Sources */,
+				3AFE335F1D92A1B700483E3A /* MovieNext.swift in Sources */,
 				3AA9C3041D915AA00042D59D /* MoviePlay.swift in Sources */,
 				3A3EE2331D8F9D46005A745D /* AppDelegate.swift in Sources */,
 				3A0B3DC51D91412200FF1E6C /* LinkVO.swift in Sources */,
@@ -641,8 +645,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -664,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -687,8 +693,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -704,9 +712,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -716,10 +725,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SZTTBDV42P;
 				INFOPLIST_FILE = gateway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gateway;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.Gateways;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -727,10 +739,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SZTTBDV42P;
 				INFOPLIST_FILE = gateway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gateway;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.Gateways;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -742,6 +757,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gatewayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gateway.app/gateway";
 			};
 			name = Debug;
@@ -754,6 +770,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gatewayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gateway.app/gateway";
 			};
 			name = Release;
@@ -765,6 +782,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gatewayUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = gateway;
 			};
 			name = Debug;
@@ -776,6 +794,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cccvlm.gatewayUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = gateway;
 			};
 			name = Release;

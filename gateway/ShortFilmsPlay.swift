@@ -40,17 +40,17 @@ class ShortFilmPlay:UIViewController{
         UiDescription.text = paramVO.description
     }
     
-    @IBAction func playMovie(sender: AnyObject) {
+    @IBAction func playMovie(_ sender: AnyObject) {
         
         if let lang = paramVO.lang{
             if let url = paramVO.url{
-                let MovieUrl = NSURL(string: "http://cccvlm.com/sfproject/movies/\(lang)/\(url)")!
-                let player = AVPlayer(URL: MovieUrl)
+                let MovieUrl = URL(string: "http://cccvlm.com/sfproject/movies/\(lang)/\(url)")!
+                let player = AVPlayer(url: MovieUrl)
                 let playerController = AVPlayerViewController()
                 
                 playerController.player = player
                 
-                self.presentViewController(playerController, animated: true){
+                self.present(playerController, animated: true){
                     player.play()
                 }
             }

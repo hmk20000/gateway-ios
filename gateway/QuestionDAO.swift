@@ -10,22 +10,19 @@ import CoreData
 
 class QuestionDAO{
     var managedContext:NSManagedObjectContext
-    var entity:NSEntityDescription
-    var ent:String?
-    init(Entity en:String){
+    var entity:NSEntityDescription!
+    var ent:String!
+    init(){
         //print("Question DAO Connect")
-        self.ent = en
+        self.ent = "Question"
         //1
-        let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
+        managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        managedContext = appDelegate.managedObjectContext
-        
-        entity =  NSEntityDescription.entityForName(en, inManagedObjectContext:managedContext)!
+        entity =  NSEntityDescription.entity(forEntityName: self.ent, in:managedContext)
     }
-    func save(v:QuestionVO){
+    func save(_ v:QuestionVO){
         let conn = NSManagedObject(entity: entity,
-                                   insertIntoManagedObjectContext: managedContext)
+                                   insertInto: managedContext)
         conn.setValue(v.category, forKey: "category")
         conn.setValue(v.index_key, forKey: "index_key")
         conn.setValue(v.question, forKey: "question")
@@ -39,15 +36,15 @@ class QuestionDAO{
         }
     }
     func deleteAll(){
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for i in results{
                     //let tmp = i.valueForKey("name") as! String
-                    managedContext.deleteObject(i)
+                    managedContext.delete(i)
                     //print("\(tmp)")
                     do {
                         try managedContext.save()            //5
@@ -66,17 +63,17 @@ class QuestionDAO{
         
     }
     func viewAll(key k:String){
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for i in results{
-                    if let tmp = i.valueForKey(k) as? String{
+                    if let tmp = i.value(forKey: k) as? String{
                         print("\(tmp)")
                     }else{
-                        let tmp = i.valueForKey(k) as? Int
+                        let tmp = i.value(forKey: k) as? Int
                         print("\(tmp)")
                     }
                     //managedContext.deleteObject(i)
@@ -99,21 +96,21 @@ class QuestionDAO{
         var list = Array<QuestionVO>()
         
         
-        let fetchRequest = NSFetchRequest(entityName: self.ent!)
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: self.ent!)
         
         do {
             let results =
-                try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                try managedContext.fetch(fetchRequest) as! [NSManagedObject]
             if results.count > 0{
                 for question in results{
                     let qvo = QuestionVO()
                     
-                    qvo.category = question.valueForKey("category") as? Int
+                    qvo.category = question.value(forKey: "category") as? Int
                     if c == qvo.category {
-                        qvo.index_key = question.valueForKey("index_key") as? Int
+                        qvo.index_key = question.value(forKey: "index_key") as? Int
                         if i == qvo.index_key {
-                            qvo.question = question.valueForKey("question") as? String
-                            qvo.question_key = question.valueForKey("question_key") as? Int
+                            qvo.question = question.value(forKey: "question") as? String
+                            qvo.question_key = question.value(forKey: "question_key") as? Int
                             
                             list.append(qvo)
                         }
