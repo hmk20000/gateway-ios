@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A3EE22E1D8F9D46005A745D"
-               BuildableName = "gateway.app"
-               BlueprintName = "gateway"
-               ReferencedContainer = "container:gateway.xcodeproj">
+               BlueprintIdentifier = "3ABADF1F1D9A582A00200931"
+               BuildableName = "Gateway.app"
+               BlueprintName = "Gateway"
+               ReferencedContainer = "container:Gateway.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A3EE2451D8F9D46005A745D"
-               BuildableName = "gatewayTests.xctest"
-               BlueprintName = "gatewayTests"
-               ReferencedContainer = "container:gateway.xcodeproj">
+               BlueprintIdentifier = "3ABADF361D9A582A00200931"
+               BuildableName = "GatewayTests.xctest"
+               BlueprintName = "GatewayTests"
+               ReferencedContainer = "container:Gateway.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A3EE2501D8F9D46005A745D"
-               BuildableName = "gatewayUITests.xctest"
-               BlueprintName = "gatewayUITests"
-               ReferencedContainer = "container:gateway.xcodeproj">
+               BlueprintIdentifier = "3ABADF411D9A582A00200931"
+               BuildableName = "GatewayUITests.xctest"
+               BlueprintName = "GatewayUITests"
+               ReferencedContainer = "container:Gateway.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A3EE22E1D8F9D46005A745D"
-            BuildableName = "gateway.app"
-            BlueprintName = "gateway"
-            ReferencedContainer = "container:gateway.xcodeproj">
+            BlueprintIdentifier = "3ABADF1F1D9A582A00200931"
+            BuildableName = "Gateway.app"
+            BlueprintName = "Gateway"
+            ReferencedContainer = "container:Gateway.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A3EE22E1D8F9D46005A745D"
-            BuildableName = "gateway.app"
-            BlueprintName = "gateway"
-            ReferencedContainer = "container:gateway.xcodeproj">
+            BlueprintIdentifier = "3ABADF1F1D9A582A00200931"
+            BuildableName = "Gateway.app"
+            BlueprintName = "Gateway"
+            ReferencedContainer = "container:Gateway.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -101,10 +101,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A3EE22E1D8F9D46005A745D"
-            BuildableName = "gateway.app"
-            BlueprintName = "gateway"
-            ReferencedContainer = "container:gateway.xcodeproj">
+            BlueprintIdentifier = "3ABADF1F1D9A582A00200931"
+            BuildableName = "Gateway.app"
+            BlueprintName = "Gateway"
+            ReferencedContainer = "container:Gateway.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

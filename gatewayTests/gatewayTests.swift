@@ -1,15 +1,15 @@
 //
-//  gatewayTests.swift
-//  gatewayTests
+//  GatewayTests.swift
+//  GatewayTests
 //
-//  Created by ming on 2016. 9. 19..
+//  Created by ming on 2016. 9. 27..
 //  Copyright © 2016년 cccvlm. All rights reserved.
 //
 
 import XCTest
-@testable import gateway
+@testable import Gateway
 
-class gatewayTests: XCTestCase {
+class GatewayTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

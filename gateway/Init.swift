@@ -5,7 +5,7 @@
 //  Created by ming on 2016. 9. 19..
 //  Copyright © 2016년 cccvlm. All rights reserved.
 //
-import UIKit
+import Foundation
 import CoreData
 
 class Init{
@@ -14,16 +14,20 @@ class Init{
         let qdao = QuestionDAO()
         let ldao = LinkDAO()
         
-        mdao.deleteAll()
-        qdao.deleteAll()
-        ldao.deleteAll()
+        
         
         let apiURI = URL(string: "http://cccvlm.com/API/gateway/")
         let apidata : Data? = try? Data(contentsOf: apiURI!)
-
+        if apidata != nil{
+            mdao.deleteAll()
+            qdao.deleteAll()
+            ldao.deleteAll()
         do{
+            
             let apiDictionary = try JSONSerialization.jsonObject(with: apidata!, options: []) as! NSArray
+            
             for tmpMovie in apiDictionary {
+                
                 let movie = tmpMovie as! [String:Any]
                 /*------------Insert Movie VO------------*/
                 let mvo = MovieVO()
@@ -35,24 +39,57 @@ class Init{
                 mvo.time = movie["time"] as? String
                 mvo.description = movie["description"] as? String
                 
-                var tmp = ""
+                /*var tmp = ""
                 if let t = movie["question1"] as? NSDictionary{
-                    //sort 필요
-                    for (k,v) in t{
+                    /*let sortedData = sort(dictionary: t)
+                    for (k,v) in sortedData{
+                        tmp += "\(k). \(v)\n\n"
+                    }*/
+                    let sortedResponses = t.sorted {
+                        switch ($0, $1) {
+                        default:
+                            let t1 = "\($0.key)"
+                            let t2 = "\($1.key)"
+                            
+                            return Int(t2)! > Int(t1)!
+                        }
+                    }
+                    for (k,v) in sortedResponses{
                         tmp += "\(k). \(v)\n\n"
                     }
+                }*/
+                
+                //mvo.question1 = tmp
+                if let t = movie["question1"] as? NSDictionary{
+                    mvo.question1 = self.sort(nsdictionary: t)
                 }
+                //mvo.question1 = sort(nsdictionary: movie["question1"] as! NSDictionary)
                 
-                mvo.question1 = tmp
-                
-                tmp = ""
+                /*tmp = ""
                 if let t = movie["question2"] as? NSDictionary{
                     //sort 필요
-                    for (k,v) in t{
+                    /*let sortedData = sort(dictionary: t)
+                    for (k,v) in sortedData{
                         tmp += "\(k). \(v)\n\n"                 
+                    }*/
+                    let sortedResponses = t.sorted {
+                        switch ($0, $1) {
+                        default:
+                            let t1 = "\($0.key)"
+                            let t2 = "\($1.key)"
+                            
+                            return Int(t2)! > Int(t1)!
+                        }
                     }
+                    for (k,v) in sortedResponses{
+                        tmp += "\(k). \(v)\n\n"
+                    }
+                }*/
+                //mvo.question2 = tmp
+                if let t = movie["question2"] as? NSDictionary{
+                    mvo.question2 = self.sort(nsdictionary: t)
                 }
-                mvo.question2 = tmp
+                //mvo.question2 = sort(nsdictionary: movie["question2"] as? NSDictionary)
 
                 mvo.url = movie["url"] as? String
                 mvo.lang = movie["lang"] as? String
@@ -93,6 +130,31 @@ class Init{
             
         }
         //mdao.viewAll(key: "descriptions")
-
+        }else{
+            print("network not connected")
+        }
+    }
+    func sort(nsdictionary dic:NSDictionary)->String{
+        var tmp = ""
+        //if let t = dic{
+        /*let sortedData = sort(dictionary: t)
+         for (k,v) in sortedData{
+         tmp += "\(k). \(v)\n\n"
+         }*/
+        let sortedResponses = dic.sorted {
+            switch ($0, $1) {
+            default:
+                let t1 = "\($0.key)"
+                let t2 = "\($1.key)"
+                
+                return Int(t2)! > Int(t1)!
+            }
+        }
+        for (k,v) in sortedResponses{
+            tmp += "\(k). \(v)\n\n"
+        }
+        //}
+        
+        return tmp
     }
 }
